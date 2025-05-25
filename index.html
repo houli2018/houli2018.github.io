@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Minty Huang – Portfolio</title>
+  <link rel="stylesheet" href="style.css"><!-- 你的完整 CSS 已放在 style.css 中 -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+<header>
+  <h1>Minty Huang <span class="pronouns">(she/her)</span></h1>
+</header>
+
+<main class="container">
+  <!-- ------------------------- LEFT COLUMN ------------------------- -->
+  <section class="projects">
+    <h2>Projects</h2>
+
+    <article class="project">
+      <img src="image/foely.png" alt="Automated Foley concept">
+      <div>
+        <h3>Automated Foley System in Computer Animation</h3>
+        <p>Developed a real-time sound synthesis framework in Unity that generates material- and geometry-specific impact sounds through modal resonance models. Integrated C# scripts with Unity’s physics pipeline, enabling designers to add realistic audio by simply attaching a component. Experiments confirmed perceptual realism across shapes, materials, and collision forces.</p>
+      </div>
+    </article>
+
+    <article class="project">
+      <img src="image/imgproxy.png" alt="imgproxy benchmark">
+      <div>
+        <h3>Serverless vs&nbsp;Serverful Benchmark for imgproxy</h3>
+        <p>Benchmarked a containerised image-processing service on Google Cloud Run and Compute Engine VMs to reveal trade-offs between cold-start latency and autoscaling throughput. Instrumented CPU logs and controlled experiments showed elasticity and container spin-up time as key drivers of performance.</p>
+      </div>
+    </article>
+
+    <article class="project">
+      <img src="image/amz.png" alt="Amazon recommendation">
+      <div>
+        <h3>Amazon Product Recommendation at Scale</h3>
+        <p>Cleaned and analysed 14&nbsp;GB of Amazon reviews with PySpark, engineered behavioural features and built collaborative-filtering models for personalised recommendations. Deployed an interactive Plotly&nbsp;Dash dashboard for stakeholders to explore product trends and sentiment.</p>
+      </div>
+    </article>
+
+    <article class="project">
+      <img src="image/brca.jpg" alt="BRCA multi-omics">
+      <div>
+        <h3>BRCA Multi-Omics Prognostic Modelling</h3>
+        <p>Explored TCGA breast-cancer multi-omics data and applied Lasso, SVM and feature-selection pipelines to predict hormone-receptor status with AUC&nbsp;0.9+. Visualised shrinkage paths and ROC curves, highlighting biologically meaningful biomarkers.</p>
+      </div>
+    </article>
+
+    <!-- ---------- Education ---------- -->
+    <h2>Education</h2>
+    <ul class="education">
+      <li>Master’s in Professional Computer Science (Big Data), Simon&nbsp;Fraser&nbsp;University — 2023-2024</li>
+      <li>B.Sc. in Statistics &amp; Computer Science, University of Illinois Urbana-Champaign — 2018-2023</li>
+    </ul>
+
+    <!-- ---------- Industry Experience ---------- -->
+    <h2>Industry&nbsp;Experience</h2>
+    <ul class="education">
+      <li>Data Engineer, Beijing&nbsp;Pu&nbsp;Da&nbsp;Di&nbsp;Tai Tech Co.&nbsp;— May – Sep 2024</li>
+    </ul>
+
+    <!-- ---------- Teaching & Tutoring ---------- -->
+    <h2>Teaching&nbsp;&amp;&nbsp;Tutoring</h2>
+    <ul class="education">
+      <li>Course Assistant, CS125 (Intro to CS), UIUC — Spring 2019</li>
+      <li>Physics 211 Tutor, UIUC — Fall 2018</li>
+    </ul>
+  </section>
+
+  <!-- ------------------------- RIGHT COLUMN ------------------------- -->
+  <aside class="sidebar">
+    <img class="profile" src="image/head.jpg" alt="Minty headshot">
+
+    <section class="about">
+      <h2>About Me</h2>
+      <p>Big-data enthusiast and aspiring InfoVis researcher passionate about turning complex datasets into intuitive visuals. Experienced in machine learning, cloud systems and interactive media, I aim to bridge AI and human understanding through visualization.</p>
+    </section>
+
+    <!-- ---------- Stacked Gallery ---------- -->
+    <section class="gallery">
+      <h2>Gallery</h2>
+
+
+      <figure>
+        <img src="image/bby.jpg" alt="Burnaby Mountain">
+        <figcaption>At Burnaby Mountain, by Haodong.</figcaption>
+      </figure>
+
+      <figure>
+        <img src="image/casi.jpg" alt="Snowboarding instructor moment">
+        <figcaption>Snowboarding instructor moment at Whistler, leftmost, by Mike.</figcaption>
+      </figure>
+
+      <figure>
+        <img src="image/dingdingcat.jpg" alt="Dingding Cat">
+        <figcaption>Dingding Cat, by me.</figcaption>
+      </figure>
+    </section>
+  </aside>
+</main>
+
+<footer>
+  <p>© 2025 Minty Huang</p>
+</footer>
+
+<!-- ------------- Stacked-photo JS ------------- -->
+<script>
+  const BASE_Y = 0;
+
+  /** Re-apply z-index & translation so that topmost photo is firstElementChild */
+  function restack(gallery){
+    const figs = [...gallery.children];
+    figs.forEach((fig, i) => {
+      fig.style.zIndex = figs.length - i;
+      fig.style.transform = `translate(${i * 18}px, ${BASE_Y + i * 18}px)`;
+    });
+  }
+
+  window.addEventListener('load', () => {
+    const gallery = document.querySelector('.gallery');
+    if(!gallery) return;
+    restack(gallery);
+
+    gallery.addEventListener('click', () => {
+      gallery.appendChild(gallery.firstElementChild);
+      restack(gallery);
+    });
+  });
+</script>
+</body>
+</html>
+

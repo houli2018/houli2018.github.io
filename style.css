@@ -1,0 +1,131 @@
+/* ---------- Base layout ---------- */
+body{
+  font-family:Arial,Helvetica,sans-serif;
+  margin:0;
+  padding:0;
+  color:#333;
+}
+header{
+  background:#f7f7f7;
+  padding:20px 0;
+  text-align:center;
+  border-bottom:1px solid #e0e0e0;
+}
+header h1{
+  margin:0;
+  font-size:2rem;
+}
+.pronouns{font-size:1rem;font-weight:normal;}
+
+.container{
+  display:flex;
+  flex-wrap:wrap;
+  max-width:1200px;
+  margin:0 auto;
+  padding:20px;
+}
+.projects{
+  flex:1 1 60%;
+  padding-right:20px;
+  padding-bottom:400px;
+  min-width:300px;
+}
+.sidebar{
+  flex:1 1 35%;
+  max-width:400px;
+  min-width:250px;
+}
+
+/* ---------- Project list ---------- */
+.project{
+  display:flex;
+  margin-bottom:20px;
+}
+.project img{
+  width:120px;
+  height:120px;
+  object-fit:cover;
+  margin-right:15px;
+  border-radius:8px;
+}
+.project h3{
+  margin-top:0;
+  margin-bottom:5px;
+}
+
+/* ---------- Sidebar ---------- */
+.profile{width:100%;border-radius:8px;}
+.about,.gallery{margin-top:20px;}
+
+/* ---------- Gallery (basic) ---------- */
+.gallery img{width:100%;border-radius:8px;}
+
+/* ---------- Typography & misc ---------- */
+figcaption{
+  font-size:.9rem;
+  color:#666;
+  margin-top:4px;
+}
+
+.education{
+  list-style:none;
+  padding:0;
+}
+.education li{margin-bottom:5px;}
+
+footer{
+  text-align:center;
+  padding:15px 0;
+  background:#f7f7f7;
+  margin-top:40px;
+  font-size:.8rem;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width:800px){
+  .container{flex-direction:column;}
+  .projects{padding-right:0;}
+}
+
+/* =========================================================
+   Stacked-photo “album” interaction
+   ---------------------------------------------------------
+   Turns .gallery into a card stack: top photo visible,
+   lower ones peek out. Clicking swaps the top to back.
+   ========================================================= */
+
+.gallery{
+  position:relative;
+  height:340px;            /* fixed height for the stack */
+}
+
+.gallery figure{
+  position:absolute;
+  top:0;
+  left:0;
+  width:100%;
+  margin:0;                /* override earlier margin rule */
+  cursor:pointer;
+  transition:transform .4s ease, opacity .4s ease;
+  /* z-index set dynamically in JS */
+}
+
+.gallery h2{
+  position:relative;
+  margin:0 0 8px;
+  z-index:5;
+}
+
+.gallery img{              /* keeps earlier rule but ensures block display */
+  display:block;
+  width:100%;
+  border-radius:8px;
+}
+
+.gallery figcaption{
+  background:rgba(0,0,0,.45);  /* dark overlay for readability */
+  color:#fff;
+  padding:4px 8px;
+  font-size:.85rem;
+  border-radius:0 0 8px 8px;
+}
